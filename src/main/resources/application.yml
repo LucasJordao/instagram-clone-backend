@@ -1,6 +1,45 @@
 micronaut:
   application:
     name: instagramClone
+  server:
+    port: 9090
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedMethods:
+            - POST
+            - PUT
+            - GET
+            - DELETE
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        enable: true
+        signatures:
+          jwks:
+            keycloak:
+              url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/certs
+
+keycloak:
+  authUrl: http://localhost:8080/realms/login/protocol/openid-connect/auth?client_id=myclient&redirect_uri=https%3A%2F%2Fwww.keycloak.org%2Fapp%2F%23url%3Dhttp%3A%2F%2localhost%3A8080%2Fauth%26realm%3Dmyrealm%26client%3Dmyrealm%26client%3Dmyclient&state=60782d3c-f93d-468f-8eb2-9cdef24afba0&response_mode=gragment&response_type=code&scope=openid&nonce=a8152238-a828-487a-8c2c-c47201ccb2ad5
+  usersRegisterUrl: http://localhost:8080/admin/realms/login/users
+  loginUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
+  grantType: password
+  clientId: instagram
+  clientSecret: 562bb046-cd14-4b19-bd46-4c9913e0c90e
+  certsRSAUrl: http://localhost:8080/realms/login/protocol/openid-connect/certs
+
+oauth2.clients.keycloak:
+  grant-type: password
+  client-id: instagram
+  client-secret: becf1e04-0f99-49c1-b067-540af7c3e241
+  authorization:
+    url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/auth
+  token:
+    url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
+    auth-method: client-secret-post
 netty:
   default:
     allocator:

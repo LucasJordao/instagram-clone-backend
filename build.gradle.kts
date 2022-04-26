@@ -26,6 +26,19 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
 
+    kapt("io.micronaut.security:micronaut-security-annotations")
+    implementation("io.micronaut.security:micronaut-security")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.security:micronaut-security-oauth2")
+    implementation("io.micronaut.security:micronaut-security-annotations")
+    implementation("io.micronaut.rxjava3:micronaut-rxjava3")
+    implementation("io.micronaut.rxjava3:micronaut-rxjava3-http-client")
+
+
+    implementation("com.squareup.okhttp:okhttp:2.7.5")
+    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
