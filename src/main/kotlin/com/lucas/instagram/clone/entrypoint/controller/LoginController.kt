@@ -1,11 +1,13 @@
 package com.lucas.instagram.clone.entrypoint.controller
 
 import com.lucas.instagram.clone.core.mappers.LoginConverter
-import com.lucas.instagram.clone.core.ports.KeycloakServicePort
+import com.lucas.instagram.clone.core.ports.OpenIdServicePort
 import com.lucas.instagram.clone.entrypoint.dto.LoginRequest
 import io.micronaut.http.HttpResponse
+import io.micronaut.http.MediaType
 import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Body
+import io.micronaut.http.annotation.Consumes
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
@@ -15,7 +17,7 @@ import io.micronaut.security.rules.SecurityRule
 
 @Controller("/instagram")
 class LoginController(
-    private val keycloakService: KeycloakServicePort
+    private val keycloakService: OpenIdServicePort
 ) {
 
     @Post("/login")
@@ -27,12 +29,13 @@ class LoginController(
         return HttpResponse.ok(token)
     }
 
-//    @Post("login")
-//    @Secured(SecurityRule.IS_ANONYMOUS)
-//    fun loginAccount(@Body user: LoginRequest): HttpResponse<String>{
-//        val result = keyclockLoginSevicePort.getTokenUser(user)
-//        return HttpResponse.ok(result).status(200).body(result)
-//    }
+
+    @Post("/loken/verify")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    fun verifyToken(@Body token: String): HttpResponse<*>{
+        return HttpResponse.ok(keycloakService.verifyToken(token))
+    }
 
     @Get("/admin")
     @Secured("admin")

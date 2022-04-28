@@ -39,6 +39,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.8")
     implementation("org.apache.commons:commons-lang3:3.12.0")
 
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }

@@ -28,8 +28,8 @@ keycloak:
   loginUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
   grantType: password
   clientId: instagram
-  clientSecret: 562bb046-cd14-4b19-bd46-4c9913e0c90e
-  certsRSAUrl: http://localhost:8080/realms/login/protocol/openid-connect/certs
+  clientSecret: 2690771f-fa3e-48b7-a488-49f0ead500a3
+  certsRSAUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/certs
 
 oauth2.clients.keycloak:
   grant-type: password
