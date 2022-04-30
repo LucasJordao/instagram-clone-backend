@@ -4,6 +4,12 @@ plugins {
     id("org.jetbrains.kotlin.plugin.allopen") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.3.2"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.6.21"
+
+}
+
+noArg {
+    annotation("com.lucas.instagram.clone.common.annotations.NoArg")
 }
 
 version = "0.1"
@@ -41,6 +47,13 @@ dependencies {
 
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
+
+    // database
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    kapt("io.micronaut.data:micronaut-data-processor")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("org.postgresql:postgresql")
+    implementation("io.micronaut.redis:micronaut-redis-lettuce")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 

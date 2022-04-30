@@ -22,25 +22,41 @@ micronaut:
             keycloak:
               url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/certs
 
-keycloak:
-  authUrl: http://localhost:8080/realms/login/protocol/openid-connect/auth?client_id=myclient&redirect_uri=https%3A%2F%2Fwww.keycloak.org%2Fapp%2F%23url%3Dhttp%3A%2F%2localhost%3A8080%2Fauth%26realm%3Dmyrealm%26client%3Dmyrealm%26client%3Dmyclient&state=60782d3c-f93d-468f-8eb2-9cdef24afba0&response_mode=gragment&response_type=code&scope=openid&nonce=a8152238-a828-487a-8c2c-c47201ccb2ad5
-  usersRegisterUrl: http://localhost:8080/admin/realms/login/users
-  loginUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
-  grantType: password
-  clientId: instagram
-  clientSecret: 2690771f-fa3e-48b7-a488-49f0ead500a3
-  certsRSAUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/certs
+redis.uri: redis://localhost
 
-oauth2.clients.keycloak:
-  grant-type: password
-  client-id: instagram
-  client-secret: becf1e04-0f99-49c1-b067-540af7c3e241
-  authorization:
-    url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/auth
-  token:
-    url: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
-    auth-method: client-secret-post
 netty:
   default:
     allocator:
       max-order: 3
+
+keycloak:
+  authUrl: http://localhost:8080/realms/login/protocol/openid-connect/auth?client_id=myclient&redirect_uri=https%3A%2F%2Fwww.keycloak.org%2Fapp%2F%23url%3Dhttp%3A%2F%2localhost%3A8080%2Fauth%26realm%3Dmyrealm%26client%3Dmyrealm%26client%3Dmyclient&state=60782d3c-f93d-468f-8eb2-9cdef24afba0&response_mode=gragment&response_type=code&scope=openid&nonce=a8152238-a828-487a-8c2c-c47201ccb2ad5
+  usersRegisterUrl: http://localhost:8080/auth/admin/realms/instagram-clone/users
+  loginUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/token
+  grantType: password
+  clientId: instagram
+  clientSecret: 2690771f-fa3e-48b7-a488-49f0ead500a3
+  clientSecretAdminCli: cd8ad4ad-1c4c-41be-b001-ac4470930f3f
+  certsRSAUrl: http://localhost:8080/auth/realms/instagram-clone/protocol/openid-connect/certs
+
+datasources:
+  default:
+    url: ${JDBC_URL:`jdbc:postgresql://localhost:5432/instagram`}
+    username: ${JDBC_USER:postgres}
+    password: ${JDBC_PASSWORD:senha}
+#    dialect: org.hibernate.dialect.PostgreSQL94Dialect
+#    driverClassName: ${JDBC_DRIVER:org.postgresql.Driver}
+
+jpa:
+  default:
+    entity-scan:
+      packages:
+        - 'com.lucas.instagram.clone.infrastructure.entity'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: create-drop
+        show_sql: true
+
+encrypt:
+  secretKey: f8f568a3bb94570bc4e36c11f84058f0

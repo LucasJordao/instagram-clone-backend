@@ -1,8 +1,12 @@
 package com.lucas.instagram.clone.entrypoint.controller
 
 import com.lucas.instagram.clone.core.mappers.LoginConverter
+import com.lucas.instagram.clone.core.mappers.UserConverter
 import com.lucas.instagram.clone.core.ports.OpenIdServicePort
+import com.lucas.instagram.clone.core.ports.UserServicePort
 import com.lucas.instagram.clone.entrypoint.dto.LoginRequest
+import com.lucas.instagram.clone.entrypoint.dto.UserRegisterRequest
+import com.lucas.instagram.clone.infrastructure.entity.UserEntity
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType
 import io.micronaut.http.MutableHttpResponse
@@ -30,7 +34,7 @@ class LoginController(
     }
 
 
-    @Post("/loken/verify")
+    @Post("/token/verify")
     @Consumes(MediaType.TEXT_PLAIN)
     @Secured(SecurityRule.IS_ANONYMOUS)
     fun verifyToken(@Body token: String): HttpResponse<*>{

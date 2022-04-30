@@ -13,6 +13,7 @@ class KeycloakConfig {
     var grantType: String = ""
     var clientId: String = ""
     var clientSecret: String = ""
+    var clientSecretAdminCli: String = ""
     var certsRSAUrl: String = ""
     var authUrl: String = ""
 
